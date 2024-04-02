@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:restaurant_booking_app/core/constants/color_constants.dart';
 import 'package:restaurant_booking_app/core/constants/image_constants.dart';
 import 'package:restaurant_booking_app/feature/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController password_controller=TextEditingController();
 
   RegExp user_validation = RegExp(r"^[\w-\.]+@([\w-]+\.)+[\w-]{3,4}$");
-  RegExp password_validation = RegExp(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{10}$");
+  RegExp password_validation = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
 
   FocusNode focusnode1 =FocusNode();
   FocusNode focusnode2 =FocusNode();
@@ -33,12 +35,14 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return  SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: ColorTheme.White,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: ColorTheme.White,
           elevation: 0,
         ),
         body: SingleChildScrollView(
+          child: Animate(
+          effects: [FadeEffect(duration: 1100.ms),SlideEffect()],
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -70,12 +74,12 @@ class _LoginPageState extends State<LoginPage> {
                                 children: [
                                   Row(
                                     children: [
-                                      Text("Log in",style:GoogleFonts.roboto(fontSize: w*0.07,fontWeight: FontWeight.bold),),
+                              Text("Log in",style:GoogleFonts.roboto(fontSize: w*0.07,fontWeight: FontWeight.bold),)
                                     ],
                                   ),
                                   Row(
                                     children: [
-                                      Text("your account",style:GoogleFonts.roboto(fontSize: w*0.07,fontWeight: FontWeight.bold)),
+                                      Text("your account",style:GoogleFonts.roboto(fontSize: w*0.07,fontWeight: FontWeight.bold))
                                     ],
                                   ),
                                 ],
@@ -101,11 +105,11 @@ class _LoginPageState extends State<LoginPage> {
                               hintText: "Enter your Email",
                               border: OutlineInputBorder(),
                               focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.orange),
+                                  borderSide: BorderSide(color: ColorTheme.Orange),
                                   borderRadius: BorderRadius.circular(10)
                               ),
                               enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.orange),
+                                  borderSide: BorderSide(color: ColorTheme.Orange),
                                   borderRadius: BorderRadius.circular(10)
                               )
                           ),
@@ -141,11 +145,11 @@ class _LoginPageState extends State<LoginPage> {
 
                             border: OutlineInputBorder(),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.orange),
+                              borderSide: BorderSide(color: ColorTheme.Orange),
                                 borderRadius: BorderRadius.circular(10)
                             ),
                             enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.orange),
+                                borderSide: BorderSide(color: ColorTheme.Orange),
                                 borderRadius: BorderRadius.circular(10)
                             ),
                           ),
@@ -181,7 +185,7 @@ class _LoginPageState extends State<LoginPage> {
                               Container(
                                 width: w*0.37,
                               //  color: Colors.grey,
-                                child: Text("Forgot Password?",style: TextStyle(fontSize: w*0.045,fontWeight: FontWeight.w600,color: Colors.blue.shade900),),
+                                child: Text("Forgot Password?",style: TextStyle(fontSize: w*0.045,fontWeight: FontWeight.w600,color: ColorTheme.DarkBlue),),
                               ),
 
 
@@ -206,22 +210,22 @@ class _LoginPageState extends State<LoginPage> {
                       password_controller.text.isNotEmpty
                   ){
                    loginData();
-                   Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(),));
+                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(),));
                   }
                 },
                 child: Container(
                   height: h*0.060,
                   width: w*0.9,
                   decoration: BoxDecoration(
-                      color: Colors.orange,
+                      color: ColorTheme.Orange,
                       borderRadius: BorderRadius.circular(w*0.01)
                   ),
-                  child: Center(child: Text("Login",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: w*0.055))),
+                  child: Center(child: Text("Login",style: TextStyle(color: ColorTheme.White,fontWeight: FontWeight.bold,fontSize: w*0.055))),
 
                 ),
               )
             ],
-          ),
+          )),
         ),
       ),
     );

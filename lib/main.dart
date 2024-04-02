@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:restaurant_booking_app/feature/splash_screen.dart';
 
 import 'feature/login_Page.dart';
@@ -12,7 +13,7 @@ String currentUserPassword='';
 bool loggedIn=false;
 
 void main() {
-  runApp(const MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
