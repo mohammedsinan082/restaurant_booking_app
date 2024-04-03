@@ -76,10 +76,7 @@ class _HomePageState extends State<HomePage> {
           ],
       ),
       body: SingleChildScrollView(
-        child:Animate(
-    effects: [FadeEffect(duration: 1100.ms),SlideEffect()],
-    child:
-        Column(
+        child:Column(
           children: [
            Consumer(
                builder: (context, ref, child) {
@@ -191,7 +188,7 @@ class _HomePageState extends State<HomePage> {
                       loading: () => Center(child: CircularProgressIndicator()),);
                },)
           ],
-        )),
+        ),
       ),
     );
   }
